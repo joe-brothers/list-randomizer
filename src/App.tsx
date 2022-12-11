@@ -1,34 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { TopBar } from "./components/TopBar";
+import { Breadcrumb } from "./components/Breadcrumb";
+import { Button, Stack, TextareaAutosize, Typography } from "@mui/material";
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [list, setList] = useState(`1\n2\n3\n4\n5`);
+  const [timestamp, setTimestamp] = useState("");
+  const onClickRandomize = () => {
+    let listItems = list.split("\n").filter((val) => val !== "");
+    for (let index = listItems.length - 1; index > 0; index--) {
+      const randomPosition = Math.floor(Math.random() * (index + 1));
+      const temporary = listItems[index];
+      listItems[index] = listItems[randomPosition];
+      listItems[randomPosition] = temporary;
+    }
+    setList(listItems.join("\n"));
+    setTimestamp(new Date().toLocaleString("en-GB"));
+  };
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    <Stack spacing={2} p={2}>
+      <TopBar />
+      <Breadcrumb />
+      <TextareaAutosize
+        value={list}
+        style={{ maxWidth: "100%", minHeight: 150, fontSize: 20 }}
+      />
+      {timestamp && <Typography>{timestamp}</Typography>}
+      <Button variant="contained" onClick={onClickRandomize}>
+        Randomize
+      </Button>
+    </Stack>
+  );
 }
 
-export default App
+export default App;
