@@ -24,6 +24,7 @@ function App() {
       <Breadcrumb />
       <TextareaAutosize
         value={list}
+        onChange={(e) => setList(e.target.value)}
         style={{ maxWidth: "100%", minHeight: 150, fontSize: 20 }}
       />
       {timestamp && <Typography>{timestamp}</Typography>}
