@@ -1,6 +1,7 @@
 {
   "name": "list-randomizer",
   "private": true,
+  "homepage": "https://joe-brothers.github.io/list-randomizer",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
