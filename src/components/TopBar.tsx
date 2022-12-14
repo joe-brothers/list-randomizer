@@ -19,7 +19,7 @@ import "@fontsource/source-code-pro/700.css";
 export const TopBar = () => {
   const pages: { [key: string]: () => void }[] = [
     {
-      Games: () => (window.location.href = "https://joe-brothers.com/#/games/"),
+      Games: () => (window.location.href = "https://joe-brothers.com/#/game/"),
     },
     {
       Utilities: () =>
